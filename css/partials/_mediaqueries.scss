@@ -158,10 +158,6 @@
     	padding: 0;
 	}
 
-	.list-item .item-content img {
-		display: none;
-	}
-
 	.visor-data .item-content img {
 		position: absolute;
     	top: 30px;
@@ -189,6 +185,12 @@
 	.brand h1 {
 		font-size: 1.75rem;
 		margin-left: 0.5rem;
+	}
+}
+
+@media screen and (max-width: 350px) {
+	.list-item .item-content img {
+		display: none;
 	}
 }
 

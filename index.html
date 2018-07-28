@@ -51,7 +51,7 @@
 		<div class="list-screen">
 			<div class="screen">
 
-				<paginate name="pokemonList" :list="pokemonList" :per="28" v-if="results">
+				<paginate ref="paginator" name="pokemonList" :list="pokemonList" :per="28" v-if="results">
 					<div class=" list-item" v-for="(pkmn, index) in paginated('pokemonList')">
 						<div class="item-content" @click="pkmnData(pkmn.id, index), visorOpen = !visorOpen">
 							<img :src="pkmn.sprite">
@@ -78,8 +78,8 @@
 				</div>
 				<div class="visor-data">
 					<div class="item-content">
-						<img :src="pokemonList[visorId].sprite">
-						<p><span>{{ pokemonList[visorId].number }}</span>{{ pokemonList[visorId].name }}</p>
+						<img :src="pokemonListRaw[visorId].sprite">
+						<p><span>{{ pokemonListRaw[visorId].number }}</span>{{ pokemonListRaw[visorId].name }}</p>
 					</div>
 					<div class="item-content item-data">
 						<div class="spinner" v-show="isLoadingDesc == true">

@@ -53,6 +53,11 @@ const vm = new Vue({
 	methods: {
 		pkmnData(id, index) {
 
+			// Determines the id to use when loading data in the visor sections
+			if(this.filtering) {
+				this.visorId = id - 1
+			}
+
 			const options = { protocol: 'https' };
 			const P = new Pokedex.Pokedex(options);
 
@@ -88,12 +93,9 @@ const vm = new Vue({
 				 	console.log(error)
 				 } )
 
-			// Determines the id to use when loading data in the visor sections
-			if(this.filtering) {
-				this.visorId = index
-			} else {
-				this.visorId = id - 1
-			}
+			
+
+			console.log(this.visorId)
 		},
 
 		filterPKMN() {
@@ -210,33 +212,30 @@ const vm = new Vue({
 			//--------------------------------------//
 			// Determines if there are results or not
 			if(filteredList.length > 0) {
-				this.pokemonList = filteredList
-				this.filtering = true
+				this.pokemonList = filteredList;
+				this.filtering = true;
 			} else {
 				this.results = false;
 			}
 
 			// Finally, reset the value of inputs
-			this.searchByName = null
-			this.searchByLetter = 'Letter'
-			this.searchByGen = 'Gen'
-
-
-			// Close the menu in mobile devices
-			let navbar = document.getElementById('navbar');
-			navbar.classList.toggle('open');
-
-
+			this.searchByName = null;
+			this.searchByLetter = 'Letter';
+			this.searchByGen = 'Gen';
+			this.isOpen = false;
+			this.menu = 'MENU';
+			this.$refs.paginator.goToPage(1);
+			
 		},
 
 		allPKMN() {
 			this.pokemonList = this.pokemonListRaw;
 			this.results = true;
 			this.filtering = false;
-
-			// Close the menu in mobile devices
-			let navbar = document.getElementById('navbar');
-			navbar.classList.toggle('open');
+			this.isOpen = false;
+			this.menu = 'MENU';
+			this.$refs.paginator.goToPage(1);
+			
 		},
 
 		openMenu() {

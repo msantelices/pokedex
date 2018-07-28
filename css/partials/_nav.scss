@@ -1,0 +1,110 @@
+.navbar {
+	width: 90%;
+	height: 60px;
+	background: $red-color;
+	border-radius: 0 0 50px 0;
+	justify-content: space-between;
+	padding-right: 4rem;
+	display: flex;
+	position: relative;
+	flex-wrap: wrap;
+	align-items: center;
+	padding: .5rem 1rem;
+}
+
+.navbar img {
+	width: 45px;
+	vertical-align: top;
+	display: inline-block;
+}
+
+.navbar h1 {
+	color: #fff;
+	margin-left: 1rem;
+	margin-bottom: 0;
+	display: inline-block;
+	font-size: 2.5rem;
+}
+
+.filters {
+	width: 60%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.filters .search-bar {
+	width: 40%;
+	text-align: center;
+}
+
+.filters input[type=text] {
+	width: 80%;
+}
+
+.filters select {
+	margin-right: 1rem;
+}
+
+.filters .all-pkmn {
+	color: #fff;
+	margin-right: 2rem;
+	font-size: $medium-font;
+}
+
+.filters .all-pkmn:hover {
+	color: #fff;
+	text-decoration: none;
+}
+
+.filters .search-btn {
+	color: #fff;
+    background: $dark-color;
+    padding: 6px 10px;
+    margin-left: -7px;
+    border-radius: 0 3px 3px 0;
+}
+
+.filters .search-btn:hover {
+	text-decoration: none;
+}
+
+.toggle {
+	display: none;
+}
+
+footer {
+	width: 50%;
+	height: 50px;
+	background: $red-color;
+	border-radius: 50px 0 0 0;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.paginate-links {
+	list-style: none;
+	padding: 0;
+	margin-bottom: 0;
+}
+
+.paginate-links li {
+	display: inline-block;
+}
+
+.paginate-links li.disabled a:not([href]):not([tabindex]) {
+	color: #a4a4a4;
+	cursor: default;
+}
+
+.paginate-links li a:not([href]):not([tabindex]) {
+	color: #fff;
+	text-transform: uppercase;
+	cursor: pointer;
+	font-size: $medium-font;
+	margin: 0 3rem;
+}

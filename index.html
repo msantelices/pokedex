@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Pokedex</title>
+
+	<link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+	<div id="app">
+
+		<nav class="navbar" :class="{open: isOpen, hideToggle: visorOpen}">
+			<div class="brand">
+				<img src="img/pokeball-logo.png" alt="">
+				<h1>POKEDEX</h1>
+			</div>
+
+			<span class="toggle" @click="openMenu">{{menu}}</span>
+
+			<div class="filters">
+				<a class="all-pkmn" href="#" @click="allPKMN">ALL POKEMON</a>
+				<select name="generation" id="generation" v-model="searchByGen" @change="filterPKMN">
+					<option value="Gen">Gen</option>
+					<option value="genI">Gen I</option>
+					<option value="genII">Gen II</option>
+					<option value="genIII">Gen III</option>
+				</select>
+				<select name="alphabetic" id="alphabetic" v-model="searchByLetter" @change="filterPKMN">
+					<option value="Letter">Letter</option>
+					<option value="abc">A - C</option>
+					<option value="def">D - F</option>
+					<option value="ghi">G - I</option>
+					<option value="jkl">J - L</option>
+					<option value="mno">M - O</option>
+					<option value="pqrs">P - S</option>
+					<option value="tuv">T - V</option>
+					<option value="wxyz">W - Z</option>
+				</select>
+				<div class="search-bar">
+					<input type="text" v-model="searchByName" @keyup.enter="filterPKMN" placeholder="Search by name or number...">
+					<a class="search-btn" href="#" @click="filterPKMN">SEARCH</a>
+				</div>
+			</div>
+
+		</nav>
+
+		<div class="list-screen">
+			<div class="screen">
+
+				<paginate name="pokemonList" :list="pokemonList" :per="28" v-if="results">
+					<div class=" list-item" v-for="(pkmn, index) in paginated('pokemonList')">
+						<div class="item-content" @click="pkmnData(pkmn.id, index), visorOpen = !visorOpen">
+							<img :src="pkmn.sprite">
+							<p><span>{{ pkmn.number }}</span>{{ pkmn.name }}</p>
+						</div>
+					</div>
+				</paginate>
+
+				<div v-if="results == false" class="no-results">
+					<p>NO HAY RESULTADOS... INTENTA NUEVAMENTE</p>
+				</div>
+
+			</div>
+		</div>
+
+
+		<div class="visor" :class="{visorOpen: visorOpen}">
+			<div class="visor-overlay" @click="visorOpen = !visorOpen">
+				<p></p>
+			</div>
+			<div class="visor-display">
+				<div class="visor-button">
+					<img src="img/pokeball-logo.png" @click="visorOpen = !visorOpen">
+				</div>
+				<div class="visor-data">
+					<div class="item-content">
+						<img :src="pokemonList[visorId].sprite">
+						<p><span>{{ pokemonList[visorId].number }}</span>{{ pokemonList[visorId].name }}</p>
+					</div>
+					<div class="item-content item-data">
+						<div class="spinner" v-show="isLoadingDesc == true">
+							<div class="rect1"></div>
+							<div class="rect2"></div>
+							<div class="rect3"></div>
+							<div class="rect4"></div>
+							<div class="rect5"></div>
+						</div>
+						<div class="description" v-show="isLoadingDesc == false">
+							<p>{{ pokemonData.description }}</p>
+						</div>
+					</div>
+					<div class="item-content item-types">
+						<div class="spinner spinner-no-margin" v-show="isLoadingTypes == true">
+							<div class="rect1"></div>
+							<div class="rect2"></div>
+							<div class="rect3"></div>
+							<div class="rect4"></div>
+							<div class="rect5"></div>
+						</div>
+						<div class="types" v-show="isLoadingTypes == false">
+							<p>Types: </p>
+							<p v-for="types in pokemonData.types">{{ types.type.name }}</p>
+						</div>
+					</div>
+					<div class="close-button">
+						<span @click="visorOpen = !visorOpen">CLOSE</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<footer>
+			<paginate-links v-if="results" for="pokemonList" :simple="{ prev: '<< Back', next: 'Next >>'}"></paginate-links>
+		</footer>
+
+
+	</div>
+
+
+	<!-- JS -->
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+	<script src="https://unpkg.com/pokeapi-js-wrapper/dist/index.js"></script>
+	<script src="js/vue-paginate.min.js"></script>
+	<script src="js/pokelist.js"></script>
+	<script src="js/main.js"></script>	
+</body>
+</html>

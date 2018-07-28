@@ -1,0 +1,50 @@
+.list-screen {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: 2.5rem;
+}
+
+.screen {
+    height: 100%;
+    width: 80%;
+    margin-right: auto;
+    margin-left: 1rem;
+    margin-bottom: 4rem;
+}
+
+.list-item {
+	display: inline-block;
+	width: 48%;
+}
+
+.item-content {
+	background: #fff;
+	border-radius: 50px;
+	height: 60px;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	padding: 0 6rem 0 2rem;
+	margin: 0.5rem;
+	cursor: pointer;
+}
+
+.item-content p {
+	text-transform: uppercase;
+	font-size: $big-font;
+	margin-bottom: 0;
+}
+
+.item-content p span {
+	margin-right: 1rem;
+}
+
+.no-results p {
+	color: #fff;
+	font-size: $big-font;
+	margin-left: 6rem;
+}
+
+

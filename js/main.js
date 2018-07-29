@@ -54,9 +54,7 @@ const vm = new Vue({
 		pkmnData(id, index) {
 
 			// Determines the id to use when loading data in the visor sections
-			if(this.filtering) {
-				this.visorId = id - 1
-			}
+			this.visorId = id - 1
 
 			const options = { protocol: 'https' };
 			const P = new Pokedex.Pokedex(options);

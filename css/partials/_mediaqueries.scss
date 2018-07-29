@@ -186,9 +186,13 @@
 		font-size: 1.75rem;
 		margin-left: 0.5rem;
 	}
+
+	.item-content p {
+		font-size: 1.5rem;
+	}
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 300px) {
 	.list-item .item-content img {
 		display: none;
 	}

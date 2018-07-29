@@ -68,6 +68,11 @@
 	.visor-display {
 		width: 0;
 		height: 100%;
+		overflow-y: scroll;
+	}
+
+	.visor-display::-webkit-scrollbar {
+		opacity: 0;
 	}
 
 	.visor.visorOpen .visor-display {
@@ -97,6 +102,7 @@
 
 	.close-button {
 		display: block;
+		margin-bottom: 4rem;
 	}
 }
 
@@ -165,10 +171,6 @@
     	border-radius: 50%;
 	}
 
-	.item-data {
-		display: none;
-	}
-
 	.visor-data .item-content {
 		margin-top: 2rem;
 	}
@@ -187,9 +189,11 @@
 		margin-left: 0.5rem;
 	}
 
-	.item-content p {
+	.item-content p,
+	.types p {
 		font-size: 1.5rem;
 	}
+
 }
 
 @media screen and (max-width: 300px) {

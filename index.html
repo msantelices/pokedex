@@ -12,6 +12,14 @@
 <body>
 
 	<div id="app">
+
+		<div class="spinner main-spinner" v-if='initialLoad'>
+			<div class="rect1"></div>
+			<div class="rect2"></div>
+			<div class="rect3"></div>
+			<div class="rect4"></div>
+			<div class="rect5"></div>
+		</div>
 		
 		<nav class="navbar" id="navbar" :class="{open: isOpen, hideToggle: visorOpen}">
 			<div class="brand">
@@ -22,7 +30,7 @@
 			<span class="toggle" @click="openMenu">{{menu}}</span>
 
 			<div class="filters">
-				<a class="all-pkmn" href="#" @click="allPKMN">ALL POKEMON</a>
+				<a class="all-pkmn" href="#" @click.prevent="allPKMN">ALL POKEMON</a>
 				<select name="generation" id="generation" v-model="searchByGen" @change="filterPKMN">
 					<option value="Gen">Gen</option>
 					<option value="genI">Gen I</option>

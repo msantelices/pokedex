@@ -22,7 +22,7 @@ var vm = new Vue({
 		results: true,
 	},
 	created() {
-		for(var i = 1; i <= 386; i++) {
+		for(var i = 1; i <= 807; i++) {
 
 			// Temporal viariable for current pokemon
 			var pkmn = { id: null, number: null, name: null, sprite: null }
@@ -65,7 +65,7 @@ var vm = new Vue({
 			var P = new Pokedex.Pokedex(options);
 
 			this.isLoadingTypes = true;
-			var pokemon = 'https://pokeapi.co/api/v2/pokemon/' + id;
+			var pokemon = 'https://pokeapi.co/api/v2/pokemon/' + id + '/';
 			P.resource(pokemon)
 				 .then( (response)=> { 				 	
 					this.pokemonData.types = response.types.reverse();
@@ -76,7 +76,7 @@ var vm = new Vue({
 				 } )
 
 			this.isLoadingDesc = true;
-			var species = 'https://pokeapi.co/api/v2/pokemon-species/' + id;
+			var species = 'https://pokeapi.co/api/v2/pokemon-species/' + id + '/';
 			P.resource(species)
 				 .then( (response)=> {
 					var flavorText = response.flavor_text_entries;
@@ -138,7 +138,7 @@ var vm = new Vue({
 						searchFilter = ['d', 'e', 'f'];
 						break;
 					case 'ghi':
-						searchFilter = ['h', 'g', 'i'];
+						searchFilter = ['g', 'h', 'i'];
 						break;
 					case 'jkl':
 						searchFilter = ['j', 'k', 'l'];
@@ -162,6 +162,7 @@ var vm = new Vue({
 						filteredList.push(this.pokemonListRaw[i]);
 					}
 				}
+
 
 				// The result is ordered alphabetically
 				function compare(a, b) {
@@ -199,6 +200,22 @@ var vm = new Vue({
 						genMin = 251;
 						genMax = 386;
 						break;
+					case 'genIV':
+						genMin = 386;
+						genMax = 493;
+						break;
+					case 'genV':
+						genMin = 493;
+						genMax = 649;
+						break;
+					case 'genVI':
+						genMin = 649;
+						genMax = 721;
+						break;
+					case 'genVII':
+						genMin = 721;
+						genMax = 807;
+						break;
 				}
 
 				for(var i = genMin; i < genMax; i++) {
@@ -206,7 +223,6 @@ var vm = new Vue({
 				}
 
 			}
-
 
 
 			//--------------------------------------//
@@ -234,8 +250,11 @@ var vm = new Vue({
 			this.filtering = false;
 			this.isOpen = false;
 			this.menu = 'MENU';
-			this.$refs.paginator.goToPage(1);
-			
+
+			if(this.$refs.paginator.currentPage !== 0) {
+				this.$refs.paginator.goToPage(1)
+			}
+		
 		},
 
 		openMenu() {
